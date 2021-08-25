@@ -18,7 +18,7 @@ class Game:
         self.time_start = 0
         self.total_time = 0
         self.accuracy = '0%'
-        self.results = 'Time:0 Accuracy:0 % Wpm:0 '
+        self.results = 'Время:0 Accuracy:0 % Wpm:0 '
         self.wpm = 0
         self.end = False
         self.HEAD_C = (255,213,102)
@@ -46,7 +46,7 @@ class Game:
         pygame.display.update()   
         
     def get_sentence(self):
-        f = open('sentences.txt').read()
+        f = open('ru_sentences.txt', 'r', encoding='utf-8').read()
         sentences = f.split('\n')
         sentence = random.choice(sentences)
         return sentence
@@ -71,7 +71,7 @@ class Game:
             self.end = True
             print(self.total_time)
                 
-            self.results = 'Time:'+str(round(self.total_time)) +" secs   Accuracy:"+ str(round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
+            self.results = 'Время:'+str(round(self.total_time)) +" secs   Accuracy:"+ str(round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
 
             # draw icon image
             self.time_img = pygame.image.load('icon.png')
@@ -85,8 +85,6 @@ class Game:
 
     def run(self):
         self.reset_game()
-    
-       
         self.running=True
         while(self.running):
             clock = pygame.time.Clock()
