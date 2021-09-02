@@ -21,9 +21,9 @@ class Game:
         self.results = 'Время:0 Accuracy:0 % Wpm:0 '
         self.wpm = 0
         self.end = False
-        self.HEAD_C = (255,213,102)
-        self.TEXT_C = (240,240,240)
-        self.RESULT_C = (255,70,70)
+        self.HEAD_C = (0,0,0)
+        self.TEXT_C = (0,0,0)
+        self.RESULT_C = (0,0,0)
         
        
         pygame.init()
@@ -32,7 +32,7 @@ class Game:
 
 
         self.bg = pygame.image.load('background.jpg')
-        self.bg = pygame.transform.scale(self.bg, (500,750))
+        self.bg = pygame.transform.scale(self.bg, (self.w,self.h))
 
         self.screen = pygame.display.set_mode((self.w,self.h))
         pygame.display.set_caption('Type Speed test')
@@ -71,14 +71,14 @@ class Game:
             self.end = True
             print(self.total_time)
                 
-            self.results = 'Время:'+str(round(self.total_time)) +" secs   Accuracy:"+ str(round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
+            self.results = 'Время:'+str(round(self.total_time)) +" сек.   Точность:"+ str(round(self.accuracy)) + "%" + '   Скорость(слов.мин): ' + str(round(self.wpm))
 
             # draw icon image
             self.time_img = pygame.image.load('icon.png')
-            self.time_img = pygame.transform.scale(self.time_img, (150,150))
+            self.time_img = pygame.transform.scale(self.time_img, (250,50))
             #screen.blit(self.time_img, (80,320))
-            screen.blit(self.time_img, (self.w/2-75,self.h-140))
-            self.draw_text(screen,"Reset", self.h - 70, 26, (100,100,100))
+            screen.blit(self.time_img, (self.w/2-130,self.h-95))
+            self.draw_text(screen,"Новое предложение", self.h - 70, 26, (0,0,0))
             
             print(self.results)
             pygame.display.update()
@@ -154,7 +154,7 @@ class Game:
         self.screen.fill((0,0,0))
         self.screen.blit(self.bg,(0,0))
         msg = "Typing Speed Test"
-        self.draw_text(self.screen, msg,80, 80,self.HEAD_C)  
+        self.draw_text(self.screen, msg,40, 40,self.HEAD_C)  
         # draw the rectangle for input box
         pygame.draw.rect(self.screen,(255,192,25), (50,250,650,50), 2)
 
